@@ -82,7 +82,7 @@ void free_var(gvar *var_ptr)
  *  getFunction - calls the needed function from the dictionary
  * @var_ptr: global variables.
  * @tokens: command.
- * Return 0 on succes, 1 otherwise.
+ * Return: 0 on succes, 1 otherwise.
 */
 int getFunction(gvar* var_ptr, char* tokens)
 {
@@ -116,6 +116,8 @@ int isnumber(char* str)
   len = strlen(str);
   for (i = 0; i < len; i++)
   {
+    if (!i && str[i] == '-')
+      continue;
     if (str[i] < '0' || str[i] > '9')
       return 0;
   }
