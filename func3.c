@@ -1,25 +1,25 @@
 #include "monty.h"
 
 /**
- * _mod - push element to list
- * @stack: Double linked list
- * @line_number: File line execution
- */
-void _mod(stack_t **stack, unsigned int line_number)
-{
-  (void) stack;
-  (void) line_number;
-}
-
-/**
  * _pchar - push element to list
  * @stack: Double linked list
  * @line_number: File line execution
  */
 void _pchar(stack_t **stack, unsigned int line_number)
 {
-  (void) stack;
-  (void) line_number;
+  if (!*stack)
+  {
+    fprintf(stderr, "L%u: can't pchar, stack empty\n", line_number);
+     free_var(&var);
+    exit(EXIT_FAILURE);
+  }
+  if (!iswascii((*stack)->n))
+  {
+    fprintf(stderr, "L%u: can't pchar, value out of range\n", line_number);
+    free_var(&var);
+    exit(EXIT_FAILURE);
+  }
+  printf("%c\n", (*stack)->n);
 }
 
 /**
@@ -29,7 +29,15 @@ void _pchar(stack_t **stack, unsigned int line_number)
  */
 void _pstr(stack_t **stack, unsigned int line_number)
 {
-  (void) stack;
+  stack_t *tmp = *stack;
+  while (tmp)
+  {
+    if (!tmp->n || !iswascii(tmp->n))
+      break;
+    printf("%c", tmp->n);
+    tmp = tmp->next;
+  }
+  printf("\n");
   (void) line_number;
 }
 
@@ -40,8 +48,8 @@ void _pstr(stack_t **stack, unsigned int line_number)
  */
 void _rotl(stack_t **stack, unsigned int line_number)
 {
-  (void) stack;
-  (void) line_number;
+  (void)stack;
+  (void)line_number;
 }
 
 /**
@@ -51,6 +59,6 @@ void _rotl(stack_t **stack, unsigned int line_number)
  */
 void _rotr(stack_t **stack, unsigned int line_number)
 {
-  (void) stack;
-  (void) line_number;
+  (void)stack;
+  (void)line_number;
 }
