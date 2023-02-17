@@ -9,6 +9,7 @@ void _queue(stack_t **stack, unsigned int line_number)
 {
   (void) stack;
   (void) line_number;
+  var.MODE = 1;
 }
 
 /**
@@ -20,4 +21,5 @@ void _stack(stack_t **stack, unsigned int line_number)
 {
   (void) stack;
   (void) line_number;
+  var.MODE = 0;
 }
