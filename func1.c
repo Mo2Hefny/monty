@@ -50,7 +50,14 @@ void _push(stack_t **stack, unsigned int line_number)
  */
 void _pall(stack_t **stack, unsigned int line_number)
 {
-  (void) stack;
+  stack_t* tmp = *stack;
+  if (!tmp)
+    return;
+  while (tmp)
+  {
+    printf("%d\n", tmp->n);
+    tmp = tmp->next;
+  }
   (void) line_number;
 }
 

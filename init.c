@@ -10,7 +10,7 @@ int init_var(gvar *var_ptr)
     var_ptr->file = NULL;
     var_ptr->buff = NULL;
     var_ptr->head = NULL;
-    var_ptr->line_number = 0;
+    var_ptr->line_number = 1;
     var_ptr->buff_size = 0;
     var_ptr->MODE = 0;
     var_ptr->dict = init_instruction();
