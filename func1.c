@@ -44,7 +44,7 @@ void _push(stack_t **stack, unsigned int line_number)
 }
 
 /**
- * _pall - push element to list
+ * _pall - print elements of list
  * @stack: Double linked list
  * @line_number: File line execution
  */
@@ -62,7 +62,7 @@ void _pall(stack_t **stack, unsigned int line_number)
 }
 
 /**
- * _pint - push element to list
+ * _pint - print the top element
  * @stack: Double linked list
  * @line_number: File line execution
  */
@@ -79,7 +79,7 @@ void _pint(stack_t **stack, unsigned int line_number)
 }
 
 /**
- * _pop - push element to list
+ * _pop - pop element from top
  * @stack: Double linked list
  * @line_number: File line execution
  */
@@ -99,7 +99,7 @@ void _pop(stack_t **stack, unsigned int line_number)
 }
 
 /**
- * _swap - push element to list
+ * _swap - swap the two last elements
  * @stack: Double linked list
  * @line_number: File line execution
  */

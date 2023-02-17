@@ -1,7 +1,7 @@
 #include "monty.h"
 
 /**
- * _pchar - push element to list
+ * _pchar - print elements as charcaters
  * @stack: Double linked list
  * @line_number: File line execution
  */
@@ -25,7 +25,7 @@ void _pchar(stack_t **stack, unsigned int line_number)
 }
 
 /**
- * _pstr - push element to list
+ * _pstr - print elements as a string.
  * @stack: Double linked list
  * @line_number: File line execution
  */
@@ -44,7 +44,7 @@ void _pstr(stack_t **stack, unsigned int line_number)
 }
 
 /**
- * _rotl - push element to list
+ * _rotl - rotates elements to the left
  * @stack: Double linked list
  * @line_number: File line execution
  */
@@ -69,7 +69,7 @@ void _rotl(stack_t **stack, unsigned int line_number)
 }
 
 /**
- * _rotr - push element to list
+ * _rotr - rotates elements to the right
  * @stack: Double linked list
  * @line_number: File line execution
  */
