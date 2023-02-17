@@ -10,19 +10,19 @@ void _push(stack_t **stack, unsigned int line_number)
   stack_t *tmp = NULL, *tmp2 = *stack;
   char *n;
 
-	n = strtok(NULL, " \r\t\n");
+  n = strtok(NULL, " \r\t\n");
   if (n == NULL || !isnumber(n))
   {
     fprintf(stderr, "L%u: usage: push integer\n", line_number);
     free_var(&var);
-		exit(EXIT_FAILURE);
+    exit(EXIT_FAILURE);
   }
   tmp = malloc(sizeof(stack_t));
   if (!tmp)
   {
     fprintf(stderr, "Error: malloc failed\n");
-  	free_var(&var);
-		exit(EXIT_FAILURE);
+    free_var(&var);
+    exit(EXIT_FAILURE);
   }
   tmp->n = atoi(n);
   if (var.MODE == 0 || !*stack)
@@ -50,7 +50,7 @@ void _push(stack_t **stack, unsigned int line_number)
  */
 void _pall(stack_t **stack, unsigned int line_number)
 {
-  stack_t* tmp = *stack;
+  stack_t *tmp = *stack;
   if (!tmp)
     return;
   while (tmp)
@@ -58,7 +58,7 @@ void _pall(stack_t **stack, unsigned int line_number)
     printf("%d\n", tmp->n);
     tmp = tmp->next;
   }
-  (void) line_number;
+  (void)line_number;
 }
 
 /**
@@ -68,7 +68,7 @@ void _pall(stack_t **stack, unsigned int line_number)
  */
 void _pint(stack_t **stack, unsigned int line_number)
 {
-  stack_t* tmp = *stack;
+  stack_t *tmp = *stack;
   if (!tmp)
   {
     fprintf(stderr, "L%u: can't pint, stack empty\n", line_number);
@@ -85,7 +85,7 @@ void _pint(stack_t **stack, unsigned int line_number)
  */
 void _pop(stack_t **stack, unsigned int line_number)
 {
-  stack_t* tmp = *stack;
+  stack_t *tmp = *stack;
   if (!tmp)
   {
     fprintf(stderr, "L%u: can't pop an empty stack\n", line_number);
@@ -95,7 +95,7 @@ void _pop(stack_t **stack, unsigned int line_number)
   *stack = tmp->next;
   if (tmp->next)
     (*stack)->prev = NULL;
-  free (tmp);
+  free(tmp);
 }
 
 /**
@@ -105,6 +105,17 @@ void _pop(stack_t **stack, unsigned int line_number)
  */
 void _swap(stack_t **stack, unsigned int line_number)
 {
-  (void) stack;
-  (void) line_number;
+  stack_t *tmp = *stack;
+  if (!tmp || !(tmp->next))
+  {
+    fprintf(stderr, "L%u: can't swap, stack too short\n", line_number);
+    free_var(&var);
+    exit(EXIT_FAILURE);
+  }
+  tmp = (*stack)->next;
+  (*stack)->next = tmp->next;
+  tmp->prev = (*stack)->prev;
+  (*stack)->prev = tmp;
+  tmp->next = *stack;
+  *stack = tmp;
 }
