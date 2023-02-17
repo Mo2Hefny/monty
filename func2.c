@@ -7,8 +7,18 @@
  */
 void _add(stack_t **stack, unsigned int line_number)
 {
-  (void) stack;
-  (void) line_number;
+  stack_t *tmp = *stack, *tmp2;
+  if (!tmp || !(tmp->next))
+  {
+    fprintf(stderr, "L%u: can't add, stack too short\n", line_number);
+    free_var(&var);
+    exit(EXIT_FAILURE);
+  }
+  tmp->n = (*stack)->n + (*stack)->next->n;
+  tmp2 = (*stack)->next->next;
+  free(tmp->next);
+  tmp->next = tmp2;
+  tmp2->prev = tmp;
 }
 
 /**
@@ -18,8 +28,8 @@ void _add(stack_t **stack, unsigned int line_number)
  */
 void _nop(stack_t **stack, unsigned int line_number)
 {
-  (void) stack;
-  (void) line_number;
+  (void)stack;
+  (void)line_number;
 }
 
 /**
@@ -29,8 +39,8 @@ void _nop(stack_t **stack, unsigned int line_number)
  */
 void _sub(stack_t **stack, unsigned int line_number)
 {
-  (void) stack;
-  (void) line_number;
+  (void)stack;
+  (void)line_number;
 }
 
 /**
@@ -40,8 +50,8 @@ void _sub(stack_t **stack, unsigned int line_number)
  */
 void _div(stack_t **stack, unsigned int line_number)
 {
-  (void) stack;
-  (void) line_number;
+  (void)stack;
+  (void)line_number;
 }
 
 /**
@@ -51,6 +61,6 @@ void _div(stack_t **stack, unsigned int line_number)
  */
 void _mul(stack_t **stack, unsigned int line_number)
 {
-  (void) stack;
-  (void) line_number;
+  (void)stack;
+  (void)line_number;
 }
