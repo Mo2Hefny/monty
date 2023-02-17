@@ -92,7 +92,7 @@ int getFunction(gvar* var_ptr, char* tokens)
     if (strcmp(var_ptr->dict[i].opcode, tokens) == 0)
     {
       if (var_ptr->dict[i].f == NULL)
-        return (EXIT_FAILURE);
+        return (EXIT_SUCCESS);
       var_ptr->dict[i].f(&(var_ptr->head), var_ptr->line_number);
       return (EXIT_SUCCESS);
     }
