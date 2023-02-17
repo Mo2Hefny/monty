@@ -11,7 +11,7 @@ void _pchar(stack_t **stack, unsigned int line_number)
   if (!*stack)
   {
     fprintf(stderr, "L%u: can't pchar, stack empty\n", line_number);
-     free_var(&var);
+    free_var(&var);
     exit(EXIT_FAILURE);
   }
   tmp = (*stack)->n;
@@ -34,13 +34,13 @@ void _pstr(stack_t **stack, unsigned int line_number)
   stack_t *tmp = *stack;
   while (tmp)
   {
-    if (!tmp->n || tmp->n < 0 ||  tmp->n > 127)
+    if (!tmp->n || tmp->n < 0 || tmp->n > 127)
       break;
     printf("%c", tmp->n);
     tmp = tmp->next;
   }
   printf("\n");
-  (void) line_number;
+  (void)line_number;
 }
 
 /**
@@ -50,8 +50,22 @@ void _pstr(stack_t **stack, unsigned int line_number)
  */
 void _rotl(stack_t **stack, unsigned int line_number)
 {
-  (void)stack;
+  stack_t *tmp = *stack, *tmp2;
   (void)line_number;
+
+  if (!tmp || !tmp->next)
+    return;
+
+  tmp2 = (*stack)->next;
+  tmp2->prev = NULL;
+
+  while (tmp->next)
+    tmp = tmp->next;
+
+  tmp->next = *stack;
+  (*stack)->prev = tmp;
+  (*stack)->next = NULL;
+  *stack = tmp2;
 }
 
 /**
@@ -61,6 +75,19 @@ void _rotl(stack_t **stack, unsigned int line_number)
  */
 void _rotr(stack_t **stack, unsigned int line_number)
 {
-  (void)stack;
+  stack_t *tmp = *stack, *tmp2;
   (void)line_number;
+
+  if (!tmp || !tmp->next)
+    return;
+
+  while (tmp->next->next)
+    tmp = tmp->next;
+  tmp2 = tmp->next;
+  tmp->next = NULL;
+
+  (*stack)->prev = tmp2;
+  tmp2->prev = NULL;
+  tmp2->next = (*stack);
+  *stack = tmp2;
 }
