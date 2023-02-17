@@ -11,6 +11,8 @@ gvar var;
 
 int main(int ac, char **av)
 {
+  char *tokens;
+  
   if (ac != 2)
   {
     fprintf(stderr, "USAGE: monty file\n");
@@ -26,8 +28,7 @@ int main(int ac, char **av)
     return (EXIT_FAILURE);
   }
 
-  char *tokens;
-  while (getline(&var.buff, &var.tmp, var.file) != EOF)
+  while (getline(&var.buff, &var.buff_size, var.file) != EOF)
   {
     tokens = strtok(var.buff, " \r\t\n");
     if (tokens != NULL)

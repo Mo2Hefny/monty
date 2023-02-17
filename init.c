@@ -91,13 +91,9 @@ int getFunction(gvar* var_ptr, char* tokens)
   {
     if (strcmp(var_ptr->dict[i].opcode, tokens) == 0)
     {
-      if (var->dict[i].f == NULL)
+      if (var_ptr->dict[i].f == NULL)
         return (EXIT_FAILURE);
-      if (var->dict[i].f(var_ptr->head, var_ptr->line_number) == EXIT_FAILURE)
-      {
-        free_var(var_ptr);
-        exit(EXIT_FAILURE);
-      }
+      var_ptr->dict[i].f(&(var_ptr->head), var_ptr->line_number);
       return (EXIT_SUCCESS);
     }
   }
@@ -110,21 +106,18 @@ int getFunction(gvar* var_ptr, char* tokens)
 }
 
 /**
- * _queue - push element to list
- * @stack: Double linked list
- * @line_number: File line execution
- */
-void _queue(stack_t **stack, unsigned int line_number)
+ * isnumber - checks if the string is a number.
+ * @str: passed string.
+ * Return: 1 if number, 0 otherwise.
+*/
+int isnumber(char* str)
 {
-
-}
-
-/**
- * _stack - push element to list
- * @stack: Double linked list
- * @line_number: File line execution
- */
-void _stack(stack_t **stack, unsigned int line_number)
-{
-
+  int len, i;
+  len = strlen(str);
+  for (i = 0; i < len; i++)
+  {
+    if (str[i] < '0' || str[i] > '9')
+      return 0;
+  }
+  return 1;
 }

@@ -11,7 +11,7 @@ void _push(stack_t **stack, unsigned int line_number)
   char *n;
 
 	n = strtok(NULL, " \r\t\n");
-  if (n == NULL || !isdigit(n))
+  if (n == NULL || !isnumber(n))
   {
     fprintf(stderr, "L%u: usage: push integer\n", line_number);
     free_var(&var);
@@ -50,7 +50,8 @@ void _push(stack_t **stack, unsigned int line_number)
  */
 void _pall(stack_t **stack, unsigned int line_number)
 {
-  
+  (void) stack;
+  (void) line_number;
 }
 
 /**
@@ -60,7 +61,8 @@ void _pall(stack_t **stack, unsigned int line_number)
  */
 void _pint(stack_t **stack, unsigned int line_number)
 {
-
+  (void) stack;
+  (void) line_number;
 }
 
 /**
@@ -70,7 +72,8 @@ void _pint(stack_t **stack, unsigned int line_number)
  */
 void _pop(stack_t **stack, unsigned int line_number)
 {
-
+  (void) stack;
+  (void) line_number;
 }
 
 /**
@@ -80,5 +83,6 @@ void _pop(stack_t **stack, unsigned int line_number)
  */
 void _swap(stack_t **stack, unsigned int line_number)
 {
-
+  (void) stack;
+  (void) line_number;
 }

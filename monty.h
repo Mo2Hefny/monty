@@ -1,7 +1,9 @@
 #ifndef _MONTY_
 #define _MONTY_
 
+#define  _GNU_SOURCE
 #include <stdio.h>
+#include <string.h>
 #include <stdlib.h>
 #include <unistd.h>
 #include <sys/stat.h>
@@ -86,5 +88,6 @@ int init_var(gvar*);
 instruction_t* init_instruction(void);
 void free_var(gvar*);
 int getFunction(gvar* var_ptr, char* tokens);
+int isnumber(char*);
 
 #endif
