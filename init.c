@@ -40,7 +40,7 @@ instruction_t* init_instruction(void)
     func[3].opcode = "pop", func[3].f = _pop;
     func[4].opcode = "swap", func[4].f = _swap;
     func[5].opcode = "add", func[5].f = _add;
-    func[6].opcode = "nop", func[6].f = _nop;
+    func[6].opcode = "nop", func[6].f = NULL;
     func[7].opcode = "sub", func[7].f = _sub;
     func[8].opcode = "div", func[8].f = _div;
     func[9].opcode = "mul", func[9].f = _mul;

@@ -7,29 +7,14 @@
  */
 void _add(stack_t **stack, unsigned int line_number)
 {
-  stack_t *tmp = *stack, *tmp2;
-  if (!tmp || !(tmp->next))
+  if (!*stack || !(*stack)->next)
   {
     fprintf(stderr, "L%u: can't add, stack too short\n", line_number);
     free_var(&var);
     exit(EXIT_FAILURE);
   }
-  tmp->n = (*stack)->n + (*stack)->next->n;
-  tmp2 = (*stack)->next->next;
-  free(tmp->next);
-  tmp->next = tmp2;
-  tmp2->prev = tmp;
-}
-
-/**
- * _nop - push element to list
- * @stack: Double linked list
- * @line_number: File line execution
- */
-void _nop(stack_t **stack, unsigned int line_number)
-{
-  (void)stack;
-  (void)line_number;
+  (*stack)->next->n += (*stack)->n;
+  pop(stack, line_number);
 }
 
 /**
@@ -39,8 +24,14 @@ void _nop(stack_t **stack, unsigned int line_number)
  */
 void _sub(stack_t **stack, unsigned int line_number)
 {
-  (void)stack;
-  (void)line_number;
+  if (!*stack || !(*stack)->next)
+  {
+    fprintf(stderr, "L%u: can't sub, stack too short\n", line_number);
+    free_var(&var);
+    exit(EXIT_FAILURE);
+  }
+  (*stack)->next->n -= (*stack)->n;
+  pop(stack, line_number);
 }
 
 /**
@@ -50,8 +41,20 @@ void _sub(stack_t **stack, unsigned int line_number)
  */
 void _div(stack_t **stack, unsigned int line_number)
 {
-  (void)stack;
-  (void)line_number;
+  if (!*stack || !(*stack)->next)
+  {
+    fprintf(stderr, "L%u: can't div, stack too short\n", line_number);
+    free_var(&var);
+    exit(EXIT_FAILURE);
+  }
+  if (!(*stack)->n)
+  {
+    fprintf(stderr, "L%u: division by zero\n", line_number);
+    free_var(&var);
+    exit(EXIT_FAILURE);
+  }
+  (*stack)->next->n /= (*stack)->n;
+  pop(stack, line_number);
 }
 
 /**
@@ -61,6 +64,12 @@ void _div(stack_t **stack, unsigned int line_number)
  */
 void _mul(stack_t **stack, unsigned int line_number)
 {
-  (void)stack;
-  (void)line_number;
+  if (!*stack || !(*stack)->next)
+  {
+    fprintf(stderr, "L%u: can't mul, stack too short\n", line_number);
+    free_var(&var);
+    exit(EXIT_FAILURE);
+  }
+  (*stack)->next->n *= (*stack)->n;
+  pop(stack, line_number);
 }
